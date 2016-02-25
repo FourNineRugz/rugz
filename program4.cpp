@@ -14,7 +14,7 @@ int menu(void)
 {
 	char snack;
 	int value = 0;
-
+	// Menu
 	cout << "Available snacks to select from:" << endl;
 	cout << "P - Potato Chips  " << setw(10) << "$1.25" << endl;
 	cout << "S - Snickers Bar  " << setw(10) << "$1.35" << endl;
@@ -23,7 +23,7 @@ int menu(void)
 	cout << "B - Brownie       " << setw(10) << "$1.75" << endl;
 	cout << "N - Nuts          " << setw(10) << "$1.40" << endl;
 
-	// TODO: Fix this. Inf loop rn
+	// Do loop
 	do{
 		cout << "Please enter the letter labeling your snack selection: ";
 		cin >> snack;
@@ -31,7 +31,7 @@ int menu(void)
 		switch (snack){
 			case 'p':	value = 125;	break;
 			case 's':	value = 135;	break;
-			case 't':	value = 95;		break;
+			case 't':	value = 95;	break;
 			case 'c':	value = 150;	break;
 			case 'b':	value = 175;	break;
 			case 'n':	value = 140;	break;		
@@ -42,6 +42,7 @@ int menu(void)
 	return value;
 }
 
+//  Inserting money
 int accept_money(int price){
 	int current = 0;
 	char c;
@@ -51,10 +52,10 @@ int accept_money(int price){
 			 << "Enter amount (enter letter of choice): ";
 		cin >> c;
 
-		switch (c){
+		switch (c){ // If case other then the following then display as invalid
 			case 'n': case 'N':	current += 5;	break;
 			case 'q': case 'Q':	current += 25;	break;
-			case 'd': case 'D': current += 100;	break;
+			case 'd': case 'D': 	current += 100;	break;
 			default: cout << endl << c << " is not recognized as a coin." << endl;
 		}
 	}
@@ -65,8 +66,7 @@ int compute_change(int total_paid, int total_price){
 	return total_paid - total_price;
 }
 
-
-
+// Main function, inserting change, looping back to the beginning
 int main(void)
 {
 	int price, change, total_paid = 0;
@@ -78,7 +78,7 @@ int main(void)
 		cout << endl << "Money accepted by the machine:" << endl
 			<< "   N - Nickel" << endl
 			<< "   Q - Quarter" << endl
-			<< "   D - The D" << endl;
+			<< "   D - Dollar" << endl;
 
 		total_paid = accept_money(price);
 		change = compute_change(total_paid, price);
@@ -89,7 +89,7 @@ int main(void)
 		cout << endl << "Would you like to make another purchase (Y/N): ";
 		cin >> c;
 		cout << endl;
-		switch(c){
+		switch(c){ // If case other then y, Y then end
 			case 'y': case 'Y': price = -1; break;
 			default: price = -2; cout << "Thank you and enjoy your purchase!" << endl; break;
 		}
